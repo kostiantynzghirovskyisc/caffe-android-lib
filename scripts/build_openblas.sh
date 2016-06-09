@@ -27,7 +27,7 @@ else
     BIT=x86
 fi
 
-WD=$(readlink -f "`dirname $0`/..")
+WD="$( cd "`dirname $0`/.." && pwd )"
 OPENBLAS_ROOT=${WD}/OpenBLAS
 INSTALL_DIR=${WD}/android_lib
 N_JOBS=${N_JOBS:-4}

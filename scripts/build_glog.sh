@@ -1,17 +1,17 @@
 #!/usr/bin/env sh
 set -e
 
-if [ -z "$NDK_ROOT" ] && [ "$#" -eq 0 ]; then
-    echo 'Either $NDK_ROOT should be set or provided as argument'
-    echo "e.g., 'export NDK_ROOT=/path/to/ndk' or"
+if [ -z "$ANDROID_NDK" ] && [ "$#" -eq 0 ]; then
+    echo 'Either $ANDROID_NDK should be set or provided as argument'
+    echo "e.g., 'export ANDROID_NDK=/path/to/ndk' or"
     echo "      '${0} /path/to/ndk'"
     exit 1
 else
-    NDK_ROOT="${1:-${NDK_ROOT}}"
+    ANDROID_NDK="${1:-${ANDROID_NDK}}"
 fi
 
 ANDROID_ABI=${ANDROID_ABI:-"armeabi-v7a with NEON"}
-WD=$(readlink -f "`dirname $0`/..")
+WD="$( cd "`dirname $0`/.." && pwd )"
 GLOG_ROOT=${WD}/glog
 BUILD_DIR=${GLOG_ROOT}/build
 ANDROID_LIB_ROOT=${WD}/android_lib
@@ -23,7 +23,7 @@ mkdir -p "${BUILD_DIR}"
 cd "${BUILD_DIR}"
 
 cmake -DCMAKE_TOOLCHAIN_FILE="${WD}/android-cmake/android.toolchain.cmake" \
-      -DANDROID_NDK="${NDK_ROOT}" \
+      -DANDROID_NDK="${ANDROID_NDK}" \
       -DCMAKE_BUILD_TYPE=Release \
       -DANDROID_ABI="${ANDROID_ABI}" \
       -DANDROID_NATIVE_API_LEVEL=21 \

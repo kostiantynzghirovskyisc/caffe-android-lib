@@ -28,7 +28,7 @@ else
     BIT=x86
 fi
 
-WD=$(readlink -f "`dirname $0`/..")
+WD="$( cd "`dirname $0`/.." && pwd )"
 LMDB_ROOT=${WD}/lmdb/libraries/liblmdb
 INSTALL_DIR=${WD}/android_lib
 N_JOBS=${N_JOBS:-4}

@@ -11,7 +11,7 @@ else
 fi
 
 ANDROID_ABI=${ANDROID_ABI:-"armeabi-v7a with NEON"}
-WD=$(readlink -f "`dirname $0`/..")
+WD="$( cd "`dirname $0`/.." && pwd )"
 PROTOBUF_ROOT=${WD}/protobuf
 BUILD_DIR=${PROTOBUF_ROOT}/build_dir
 INSTALL_DIR=${WD}/android_lib

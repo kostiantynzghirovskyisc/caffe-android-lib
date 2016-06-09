@@ -7,11 +7,11 @@ if [ -z "$NDK_ROOT" ] && [ "$#" -eq 0 ]; then
     echo "      '${0} /path/to/ndk'"
     exit 1
 else
-    NDK_ROOT=$(readlink -f "${1:-${NDK_ROOT}}")
+    NDK_ROOT="${1:-${NDK_ROOT}}"
     export NDK_ROOT="${NDK_ROOT}"
 fi
 
-WD=$(readlink -f "`dirname $0`")
+WD="$( cd "`dirname $0`" && pwd )"
 cd ${WD}
 
 export ANDROID_ABI="${ANDROID_ABI:-"armeabi-v7a with NEON"}"
